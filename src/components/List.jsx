@@ -83,7 +83,7 @@ function Lists() {
         });
     };
     fetchdata()
-  }, []);
+  }, [skip,limit]);
 
  
   const fetchMoreData = () => {
