@@ -19,6 +19,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "@mui/material";
 import Grid from '@mui/material/Grid';
+import moment from "moment/moment";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -175,7 +176,7 @@ function Lists() {
                     secondary={
                       <React.Fragment>
                         <Link href={bookmark.url}>{bookmark.url}</Link>
-                        <Typography>{bookmark.createdAt}</Typography>
+                        <Typography>{moment(bookmark.createdAt).format('YYYY-MM-DD')}</Typography>
                       </React.Fragment>
                     }
                   />
