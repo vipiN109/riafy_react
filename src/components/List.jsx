@@ -65,8 +65,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 function Lists() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  const [skip, setSkip] = useState(0);
-  const [limit, setLimit] = useState(10);
+  var skip=0
+  var limit=10
   const [search, setSearch] = useState("");
   const [totalDoc, setTotalDoc] = useState(0);
   useEffect(() => {
