@@ -65,26 +65,27 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 function Lists() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  var skip=0
-  var limit=10
+  const [skip,setSkip]=useState(0)
+  const [limit,setLimit]=useState(10)
   const [search, setSearch] = useState("");
   const [totalDoc, setTotalDoc] = useState(0);
   useEffect(() => {
-    fetchdata();
+    const fetchdata = async () => {
+      axios
+        .get("http://54.212.17.247:3001/get_bookmarks", {
+          params: { skip: skip, limit: limit, search: search },
+        })
+        .then((res) => {
+          if (res.data.code === 200) {
+            setData(res.data.data);
+            setTotalDoc(res.data.total_documents);
+          }
+        });
+    };
+    fetchdata()
   }, []);
 
-  const fetchdata = async () => {
-    axios
-      .get("http://54.212.17.247:3001/get_bookmarks", {
-        params: { skip: skip, limit: limit, search: search },
-      })
-      .then((res) => {
-        if (res.data.code === 200) {
-          setData(res.data.data);
-          setTotalDoc(res.data.total_documents);
-        }
-      });
-  };
+ 
   const fetchMoreData = () => {
     console.log(skip + 1, "jjjjjjjj");
     var updatedSkip = skip + 1;
